@@ -3,16 +3,17 @@ import _ from 'lodash';
 
 const iframe = document.querySelector('iframe');
 const player = new Player(iframe);
+const STORAGE_KEY = 'videoplayer-current-time';
 
 player.on(
   'timeupdate',
   _.throttle(e => {
-    localStorage.setItem('videoplayer-current-time', e.seconds);
+    localStorage.setItem(STORAGE_KEY, e.seconds);
   }, 1000)
 );
 
 const getVideoCurrentTime = () => {
-  return localStorage.getItem('videoplayer-current-time');
+  return localStorage.getItem(STORAGE_KEY);
 };
 
 player
